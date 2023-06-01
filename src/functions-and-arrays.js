@@ -50,10 +50,23 @@ function sumNumbers(arr) {
 
 // Iteration #3.1 Bonus:
 function sum(arr) {
+  let sum = 0;
+
   if (arr.length === 0) {
-    return null;
+    return 0;
   } else {
-    for (let i = 0; i < arr.length; i++) {}
+    for (i = 0; i < arr.length; i++) {
+      if (typeof arr[i] === "number") {
+        sum += arr[i];
+      } else if (typeof arr[i] === "string") {
+        sum += arr[i].length;
+      } else if (arr[i] === true) {
+        sum += 1;
+      } else if (typeof arr[i] === "object") {
+        throw new Error("Unsupported data type sir or ma'am");
+      }
+    }
+    return sum;
   }
 }
 
@@ -109,7 +122,24 @@ function averageWordLength(arr) {
 }
 
 // Bonus - Iteration #4.1
-function avg() {}
+function avg(arr) {
+  let sum = 0;
+
+  if (arr.length === 0) {
+    return null;
+  } else {
+    arr.forEach((e) => {
+      if (typeof e === "number") {
+        sum += e;
+      } else if (typeof e === "string") {
+        sum += e.length;
+      } else if (e === true) {
+        sum++;
+      }
+    });
+  }
+  return sum / arr.length;
+}
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -258,7 +288,43 @@ const matrix = [
   ],
 ];
 
-function greatestProduct() {}
+function greatestProduct(matrix) {
+  let numRows = matrix.length;
+  let numCols = matrix[i].length;
+
+  let maxProduct = 0;
+
+  // Max product horizontal
+
+  for (let row = 0; row < numRows; row++) {
+    for (let col = 0; col <= numCols - 4; col++) {
+      let product =
+        matrix[row][col] *
+        matrix[row][col + 1] *
+        matrix[row][col + 2] *
+        matrix[row][col + 3];
+      if (product > maxProduct) {
+        maxProduct = product;
+      }
+    }
+  }
+
+  // Mas product vertical
+
+  for (let col = 0; col < numCols; col++) {
+    for (let row = 0; row <= numRows - 4; row++) {
+      let product =
+        matrix[row][col] *
+        matrix[row + 1][col] *
+        matrix[row + 2][col] *
+        matrix[row + 3][col];
+      if (product > maxProduct) {
+        maxProduct = product;
+      }
+    }
+  }
+  return maxProduct;
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
